@@ -1,7 +1,11 @@
 import { Game } from "../scenes/Game";
 import { Shot } from "./Shot";
 
+const shotDelay = 100;
+
 export class Player extends Phaser.Physics.Arcade.Sprite {
+  private lastShot: number;
+
   declare body: Phaser.Physics.Arcade.Body;
   declare scene: Game;
 
@@ -9,17 +13,25 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, "player");
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
-    this.scene.input.on(Phaser.Input.Events.POINTER_DOWN, () => this.shoot());
+    this.lastShot = this.scene.time.now;
   }
 
   protected preUpdate(time: number, delta: number): void {
     this.x = this.scene.input.activePointer.x;
     this.y = this.scene.input.activePointer.y;
+
+    if (
+      this.scene.input.activePointer.isDown &&
+      time - this.lastShot > shotDelay
+    ) {
+      this.shoot();
+      this.lastShot = time;
+    }
   }
 
   shoot() {
     this.scene.enemyShots.add(
-      new Shot(this.scene, this.x, this.y).setVelocityY(-200)
+      new Shot(this.scene, this.x, this.y).setVelocityY(-500)
     );
   }
 }
