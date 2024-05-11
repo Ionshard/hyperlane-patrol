@@ -24,6 +24,10 @@ export class Game extends Scene {
       .setOrigin(0)
       .setDepth(100);
 
+    this.hideCursor();
+
+    document.getElementById(this.game.config.parent)!.classList.add("playing");
+
     this.player = new Player(this, 100, 100);
     this.enemyShots = this.add.group({
       runChildUpdate: true,
@@ -35,5 +39,19 @@ export class Game extends Scene {
     const testEmitter = new SimpleShotEmitter(this, enemy);
     testEmitter.start();
     this.add.existing(testEmitter);
+  }
+
+  /**
+   * Hides the cursor
+   * See: https://stackoverflow.com/a/9834929/1308390
+   * and: https://newdocs.phaser.io/docs/3.52.0/focus/Phaser.Input.InputPlugin-setDefaultCursor
+   */
+  hideCursor() {
+    const embeddedUrl = `url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjbQg61aAAAADUlEQVQYV2P4//8/IwAI/QL/+TZZdwAAAABJRU5ErkJggg==')`;
+    const hostedUrl = `url(assets/blank.cur)`;
+    const fallback = `none`;
+    this.input.setDefaultCursor(
+      `${embeddedUrl}, ${hostedUrl}, ${fallback} !important`
+    );
   }
 }
