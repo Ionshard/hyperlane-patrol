@@ -52,8 +52,6 @@ export class Game extends Scene {
     const embeddedUrl = `url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjbQg61aAAAADUlEQVQYV2P4//8/IwAI/QL/+TZZdwAAAABJRU5ErkJggg==')`;
     const hostedUrl = `url(assets/blank.cur)`;
     const fallback = `none`;
-    this.input.setDefaultCursor(
-      `${embeddedUrl}, ${hostedUrl}, ${fallback} !important`
-    );
+    this.input.setDefaultCursor(`${embeddedUrl}, ${hostedUrl}, ${fallback}`);
   }
 }
