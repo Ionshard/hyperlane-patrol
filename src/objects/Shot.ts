@@ -1,4 +1,3 @@
-import { Physics } from "phaser";
 import { Game } from "../scenes/Game";
 
 export class Shot extends Phaser.Physics.Arcade.Image {
@@ -9,6 +8,8 @@ export class Shot extends Phaser.Physics.Arcade.Image {
   }
 
   update(): void {
+    const height = Number(this.scene.game.config.height);
     if (this.y < -10) this.destroy();
+    if (this.y > height + 10) this.destroy();
   }
 }

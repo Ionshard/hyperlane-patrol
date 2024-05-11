@@ -1,10 +1,12 @@
 import { Scene } from "phaser";
 import { Player } from "../objects/Player";
 import { SimpleShotEmitter } from "../objects/ShotEmitter";
+import { Enemy } from "../objects/Enemy";
 
 export class Game extends Scene {
   player: Player;
   enemyShots: Phaser.GameObjects.Group;
+  enemies: Phaser.GameObjects.Group;
   constructor() {
     super("Game");
   }
@@ -29,16 +31,16 @@ export class Game extends Scene {
     document.getElementById(this.game.config.parent)!.classList.add("playing");
 
     this.player = new Player(this, 100, 100);
+
+    this.enemies = this.add.group({
+      runChildUpdate: true,
+    });
+
     this.enemyShots = this.add.group({
       runChildUpdate: true,
     });
 
-    const enemy = this.physics.add.sprite(100, 100, "enemy");
-    enemy.setOrigin(0.5);
-
-    const testEmitter = new SimpleShotEmitter(this, enemy);
-    testEmitter.start();
-    this.add.existing(testEmitter);
+    this.enemies.add(new Enemy(this, 100, 100));
   }
 
   /**

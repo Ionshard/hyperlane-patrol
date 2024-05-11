@@ -9,13 +9,10 @@ export class SimpleShotEmitter
   extends Phaser.GameObjects.Group
   implements ShotEmitter
 {
-  host: Phaser.Types.Physics.Arcade.GameObjectWithBody;
+  host: Phaser.Physics.Arcade.Sprite;
 
   declare scene: Game;
-  constructor(
-    scene: Game,
-    host: Phaser.Types.Physics.Arcade.GameObjectWithBody
-  ) {
+  constructor(scene: Game, host: Phaser.Physics.Arcade.Sprite) {
     super(scene);
     this.host = host;
     this.scene.add.existing(this);
@@ -27,9 +24,7 @@ export class SimpleShotEmitter
       loop: true,
       callback: () => {
         this.scene.enemyShots.add(
-          new Shot(this.scene, this.host.body.x, this.host.body.y).setVelocityY(
-            50
-          )
+          new Shot(this.scene, this.host.x, this.host.y).setVelocityY(50)
         );
       },
     });
