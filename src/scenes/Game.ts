@@ -1,5 +1,6 @@
 import { Scene } from "phaser";
 import { Player } from "../objects/Player";
+import { SimpleShotEmitter } from "../objects/ShotEmitter";
 
 export class Game extends Scene {
   player: Player;
@@ -27,5 +28,12 @@ export class Game extends Scene {
     this.enemyShots = this.add.group({
       runChildUpdate: true,
     });
+
+    const enemy = this.physics.add.sprite(100, 100, "enemy");
+    enemy.setOrigin(0.5);
+
+    const testEmitter = new SimpleShotEmitter(this, enemy);
+    testEmitter.start();
+    this.add.existing(testEmitter);
   }
 }

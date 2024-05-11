@@ -18,6 +18,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   shoot() {
-    this.scene.enemyShots.add(new Shot(this.scene, this.x, this.y));
+    this.scene.enemyShots.add(
+      new Shot(this.scene, this.x, this.y).setVelocityY(-200)
+    );
   }
 }

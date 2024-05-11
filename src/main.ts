@@ -10,6 +10,7 @@ const config: Types.Core.GameConfig = {
   height: 1000,
   parent: "game-container",
   backgroundColor: "#111122",
+  disableContextMenu: true,
   scale: {
     mode: Scale.FIT,
     autoCenter: Scale.CENTER_BOTH,

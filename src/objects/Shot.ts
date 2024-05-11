@@ -6,8 +6,6 @@ export class Shot extends Phaser.Physics.Arcade.Image {
     super(scene, x, y, "shot");
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
-
-    this.setVelocityY(-200);
   }
 
   update(): void {
