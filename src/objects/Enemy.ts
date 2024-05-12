@@ -14,6 +14,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       bulletSpeed: 150,
       spawnRate: 500,
       numberOfShots: 10,
+      spinRate: 15,
     });
     this.shotEmitter.start();
 

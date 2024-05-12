@@ -10,6 +10,7 @@ export type RingShotEmitterConfig = {
   bulletSpeed: number;
   spawnRate: number;
   numberOfShots: number;
+  spinRate: number;
 };
 export class RingShotEmitter
   extends Phaser.GameObjects.Group
@@ -17,6 +18,7 @@ export class RingShotEmitter
 {
   host: Phaser.Physics.Arcade.Sprite;
   config: RingShotEmitterConfig;
+  prime: Phaser.Math.Vector2;
 
   declare scene: Game;
   constructor(
@@ -28,6 +30,7 @@ export class RingShotEmitter
     this.host = host;
     this.config = config;
     this.scene.add.existing(this);
+    this.prime = new Phaser.Math.Vector2(0, 1);
   }
 
   start(): void {
@@ -39,7 +42,7 @@ export class RingShotEmitter
   }
 
   emitShots() {
-    let velocity = new Phaser.Math.Vector2(0, 1);
+    let velocity = this.prime.clone();
     const angleOffset = Phaser.Math.PI2 / this.config.numberOfShots;
     for (let i = 0; i < this.config.numberOfShots; i++) {
       velocity = velocity.normalize().scale(this.config.bulletSpeed);
@@ -53,5 +56,6 @@ export class RingShotEmitter
 
       velocity = velocity.rotate(angleOffset);
     }
+    this.prime = this.prime.rotate(this.config.spinRate);
   }
 }
