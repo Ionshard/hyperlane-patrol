@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import { Player } from "../objects/Player";
-import { SimpleShotEmitter } from "../objects/ShotEmitter";
+import { RingShotEmitter } from "../objects/ShotEmitter";
 import { Enemy } from "../objects/Enemy";
 
 export class Game extends Scene {
@@ -40,7 +40,7 @@ export class Game extends Scene {
       runChildUpdate: true,
     });
 
-    this.enemies.add(new Enemy(this, 100, 100));
+    this.enemies.add(new Enemy(this, 225, 400));
   }
 
   /**

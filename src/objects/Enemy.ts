@@ -1,5 +1,5 @@
 import { Game } from "../scenes/Game";
-import { ShotEmitter, SimpleShotEmitter } from "./ShotEmitter";
+import { ShotEmitter, RingShotEmitter } from "./ShotEmitter";
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
   shotEmitter: ShotEmitter;
@@ -9,15 +9,20 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, "enemy");
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
-    this.shotEmitter = new SimpleShotEmitter(this.scene, this);
+    this.shotEmitter = new RingShotEmitter(this.scene, this, {
+      type: "ring",
+      bulletSpeed: 150,
+      spawnRate: 500,
+      numberOfShots: 10,
+    });
     this.shotEmitter.start();
 
-    this.scene.tweens.add({
-      targets: this,
-      x: { from: 100, to: 300 },
-      duration: 3000,
-      yoyo: true,
-      repeat: -1,
-    });
+    // this.scene.tweens.add({
+    //   targets: this,
+    //   x: { from: 100, to: 300 },
+    //   duration: 3000,
+    //   yoyo: true,
+    //   repeat: -1,
+    // });
   }
 }
