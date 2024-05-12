@@ -11,6 +11,7 @@ export type RingShotEmitterConfig = {
   spawnRate: number;
   numberOfShots: number;
   spinRate: number;
+  initialAngle: number;
 };
 export class RingShotEmitter
   extends Phaser.GameObjects.Group
@@ -30,7 +31,9 @@ export class RingShotEmitter
     this.host = host;
     this.config = config;
     this.scene.add.existing(this);
-    this.prime = new Phaser.Math.Vector2(0, 1);
+    this.prime = new Phaser.Math.Vector2(1, 0)
+      .rotate(this.config.initialAngle)
+      .normalize();
   }
 
   start(): void {

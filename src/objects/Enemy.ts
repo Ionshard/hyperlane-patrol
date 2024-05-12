@@ -11,10 +11,11 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.scene.physics.add.existing(this);
     this.shotEmitter = new RingShotEmitter(this.scene, this, {
       type: "ring",
+      initialAngle: 0,
       bulletSpeed: 150,
       spawnRate: 500,
-      numberOfShots: 10,
-      spinRate: 15,
+      numberOfShots: 7,
+      spinRate: 0,
     });
     this.shotEmitter.start();
 
