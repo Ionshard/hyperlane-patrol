@@ -1,0 +1,335 @@
+{
+	"textures": [
+		{
+			"image": "sprites.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 645,
+				"h": 48
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "sprite_enemy_sphereprobe_0.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 44,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 87,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 130,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 173,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_5.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 216,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_6.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 259,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_7.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 302,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_8.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 345,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_9.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 388,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_10.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 431,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_11.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 474,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_12.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 517,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_13.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 560,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				},
+				{
+					"filename": "sprite_enemy_sphereprobe_14.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 45,
+						"h": 48
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					},
+					"frame": {
+						"x": 603,
+						"y": 1,
+						"w": 41,
+						"h": 46
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:63da6b351dc79436462c6f833ab18c2b:5d6b3a913eaee7ecb8b257830cfc0afc:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	}
+}

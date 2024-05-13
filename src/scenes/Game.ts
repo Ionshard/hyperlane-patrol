@@ -16,6 +16,27 @@ export class Game extends Scene {
     this.hideCursor();
     this.events.on(Phaser.Scenes.Events.SHUTDOWN, () => this.showCursor());
 
+    this.anims.create({
+      key: "playerShot",
+      frames: this.anims.generateFrameNumbers("playerShot", {
+        start: 0,
+        end: 2,
+      }),
+      frameRate: 20,
+      yoyo: true,
+    });
+
+    this.anims.create({
+      key: "sphereProbe",
+      frames: this.anims.generateFrameNames("sprites", {
+        start: 0,
+        end: 14,
+        prefix: "sprite_enemy_sphereprobe_",
+        suffix: ".png",
+      }),
+      frameRate: 10,
+    });
+
     this.player = new Player(this, 100, 100);
     this.playerShots = this.add.group({
       runChildUpdate: true,

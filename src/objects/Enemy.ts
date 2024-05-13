@@ -8,9 +8,12 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   declare body: Phaser.Physics.Arcade.Body;
   declare scene: Game;
   constructor(scene: Game, x: number, y: number) {
-    super(scene, x, y, "enemy");
+    super(scene, x, y, "sprites", "sprite_enemy_sphereprobe_0.png");
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
+
+    this.anims.play({ key: "sphereProbe", repeat: -1 });
+
     this.shotEmitter = new RingShotEmitter(this.scene, {
       type: "ring",
       host: this,
@@ -37,14 +40,15 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       radius: 50,
     });
     this.scene.time.delayedCall(250, () => otherEmitter.start());
-    // this.on(Phaser.GameObjects.Events.DESTROY, () => otherEmitter.destroy());
-    // this.scene.tweens.add({
-    //   targets: this,
-    //   x: { from: 100, to: 300 },
-    //   duration: 3000,
-    //   yoyo: true,
-    //   repeat: -1,
-    // });
+
+    this.on(Phaser.GameObjects.Events.DESTROY, () => otherEmitter.destroy());
+    this.scene.tweens.add({
+      targets: this,
+      x: { from: 100, to: 300 },
+      duration: 3000,
+      yoyo: true,
+      repeat: -1,
+    });
   }
 
   onShotCollide(shot: Shot) {

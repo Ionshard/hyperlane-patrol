@@ -1,20 +1,35 @@
 import { Game } from "../scenes/Game";
 
+const SHOT_DATA = {
+  playerShot: {
+    animated: true,
+  },
+  blueShot: {
+    animated: false,
+  },
+  pinkShot: {
+    animated: false,
+  },
+} as const;
+
 export type ShotConfig = {
-  name: "playerShot" | "blueShot" | "pinkShot";
+  name: keyof typeof SHOT_DATA;
   velocityY: number;
   velocityX: number;
 };
-export class Shot extends Phaser.Physics.Arcade.Image {
+export class Shot extends Phaser.Physics.Arcade.Sprite {
   config: ShotConfig;
 
   constructor(scene: Game, x: number, y: number, config: ShotConfig) {
-    super(scene, x, y, config.name);
+    super(scene, x, y, config.name, 0);
     this.config = config;
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     //console.log("Firing shot", config);
     this.setVelocity(this.config.velocityX, this.config.velocityY);
+    if (SHOT_DATA[config.name].animated) {
+      this.play({ key: config.name, repeat: -1 });
+    }
   }
 
   update(): void {
