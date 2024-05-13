@@ -5,6 +5,7 @@ import { Enemy } from "../objects/Enemy";
 
 export class Game extends Scene {
   player: Player;
+  playerShots: Phaser.GameObjects.Group;
   enemyShots: Phaser.GameObjects.Group;
   enemies: Phaser.GameObjects.Group;
   constructor() {
@@ -31,6 +32,9 @@ export class Game extends Scene {
     document.getElementById(this.game.config.parent)!.classList.add("playing");
 
     this.player = new Player(this, 100, 100);
+    this.playerShots = this.add.group({
+      runChildUpdate: true,
+    });
 
     this.enemies = this.add.group({
       runChildUpdate: true,

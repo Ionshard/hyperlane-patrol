@@ -9,6 +9,7 @@ export class Bootloader extends Scene {
     this.load.setPath("assets");
 
     this.load.image("player", "player.png");
+    this.load.image("playerShot", "playerShot.png");
     this.load.image("blueShot", "blueShot.png");
     this.load.image("pinkShot", "pinkShot.png");
     this.load.image("enemy", "enemy.png");
