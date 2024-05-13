@@ -1,9 +1,10 @@
-import { Vector } from "matter";
 import { Game } from "../scenes/Game";
 import { Shot, ShotConfig } from "./Shot";
 
 export interface ShotEmitter extends Phaser.GameObjects.Group {
   start(): void;
+  stop(): void;
+  isPaused(): boolean;
 }
 
 export type ShotEmitterConfig = RingShotEmitterConfig;
@@ -29,6 +30,7 @@ export class RingShotEmitter
   config: RingShotEmitterConfig;
 
   private prime: Phaser.Math.Vector2;
+  private timerEvent: Phaser.Time.TimerEvent;
 
   declare scene: Game;
   constructor(scene: Game, config: RingShotEmitterConfig) {
@@ -38,14 +40,30 @@ export class RingShotEmitter
     this.prime = new Phaser.Math.Vector2(1, 0)
       .rotate(this.config.initialAngle)
       .normalize();
-  }
 
-  start(): void {
-    this.scene.time.addEvent({
+    this.timerEvent = this.scene.time.addEvent({
+      paused: true,
       delay: this.config.spawnRate,
       loop: true,
       callback: () => this.emitShots(),
     });
+
+    this.config.host.on(Phaser.GameObjects.Events.DESTROY, () =>
+      this.destroy()
+    );
+    this.on(Phaser.GameObjects.Events.DESTROY, () => this.timerEvent.destroy());
+  }
+
+  start(): void {
+    if (this.timerEvent.paused) this.timerEvent.paused = false;
+  }
+
+  stop(): void {
+    if (!this.timerEvent.paused) this.timerEvent.paused = true;
+  }
+
+  isPaused(): boolean {
+    return this.timerEvent.paused;
   }
 
   emitShots() {

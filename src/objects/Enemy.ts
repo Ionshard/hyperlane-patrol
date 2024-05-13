@@ -35,6 +35,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       radius: 50,
     });
     this.scene.time.delayedCall(250, () => otherEmitter.start());
+    // this.on(Phaser.GameObjects.Events.DESTROY, () => otherEmitter.destroy());
     // this.scene.tweens.add({
     //   targets: this,
     //   x: { from: 100, to: 300 },
@@ -47,5 +48,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   onShotCollide(shot: Shot) {
     console.log("Gottem!");
     shot.destroy();
+    // this.shotEmitter.stop();
+    // this.destroy();
   }
 }
