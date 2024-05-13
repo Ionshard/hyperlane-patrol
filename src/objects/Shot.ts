@@ -18,6 +18,7 @@ export class Shot extends Phaser.Physics.Arcade.Image {
   }
 
   update(): void {
+    super.update();
     const width = Number(this.scene.game.config.width);
     const height = Number(this.scene.game.config.height);
     if (this.y < -10) this.destroy();

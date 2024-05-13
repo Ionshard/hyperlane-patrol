@@ -1,4 +1,5 @@
 import { Game } from "../scenes/Game";
+import { Shot } from "./Shot";
 import { ShotEmitter, RingShotEmitter } from "./ShotEmitter";
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
@@ -41,5 +42,10 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     //   yoyo: true,
     //   repeat: -1,
     // });
+  }
+
+  onShotCollide(shot: Shot) {
+    console.log("Gottem!");
+    shot.destroy();
   }
 }

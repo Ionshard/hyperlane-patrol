@@ -27,7 +27,8 @@ export class RingShotEmitter
   implements ShotEmitter
 {
   config: RingShotEmitterConfig;
-  prime: Phaser.Math.Vector2;
+
+  private prime: Phaser.Math.Vector2;
 
   declare scene: Game;
   constructor(scene: Game, config: RingShotEmitterConfig) {

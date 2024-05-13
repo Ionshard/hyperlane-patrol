@@ -1,7 +1,7 @@
 import { Scene } from "phaser";
 import { Player } from "../objects/Player";
-import { RingShotEmitter } from "../objects/ShotEmitter";
 import { Enemy } from "../objects/Enemy";
+import { Shot } from "../objects/Shot";
 
 export class Game extends Scene {
   player: Player;
@@ -29,28 +29,42 @@ export class Game extends Scene {
 
     this.hideCursor();
 
-    document.getElementById(this.game.config.parent)!.classList.add("playing");
-
     this.player = new Player(this, 100, 100);
     this.playerShots = this.add.group({
       runChildUpdate: true,
     });
 
-    this.enemies = this.add.group({
-      runChildUpdate: true,
-    });
+    this.enemies = this.add.group();
 
     this.enemyShots = this.add.group({
       runChildUpdate: true,
     });
 
-    this.enemies.add(new Enemy(this, 225, 400));
+    const enemy = new Enemy(this, 225, 400);
+
+    this.enemies.add(enemy);
+
+    this.physics.add.overlap(this.player, this.enemyShots, ((
+      player: Player,
+      shot: Shot
+    ) =>
+      player.onShotCollide(
+        shot
+      )) as Phaser.Types.Physics.Arcade.ArcadePhysicsCallback);
+
+    this.physics.add.overlap(this.enemies, this.playerShots, ((
+      enemy: Enemy,
+      shot: Shot
+    ) =>
+      enemy.onShotCollide(
+        shot
+      )) as Phaser.Types.Physics.Arcade.ArcadePhysicsCallback);
 
     // this.time.addEvent({
     //   delay: 1000,
     //   loop: true,
     //   callback: () => {
-    //     console.log("Bullets: ", this.enemyShots.getLength());
+    //     console.log("Bullets: ", this.playerShots.getLength());
     //   },
     // });
   }
