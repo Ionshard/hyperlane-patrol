@@ -2,6 +2,8 @@ import { Bootloader } from "./scenes/Bootloader";
 import { Game as MainGame } from "./scenes/Game";
 import { AUTO, Game, Scale, Types } from "phaser";
 import { Splash } from "./scenes/Splash";
+import { GameOver } from "./scenes/GameOver";
+import { Win } from "./scenes/Win";
 
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
@@ -16,7 +18,7 @@ const config: Types.Core.GameConfig = {
     mode: Scale.FIT,
     autoCenter: Scale.CENTER_BOTH,
   },
-  scene: [Bootloader, Splash, MainGame],
+  scene: [Bootloader, Splash, MainGame, GameOver, Win],
   physics: {
     default: "arcade",
     arcade: {

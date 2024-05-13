@@ -1,8 +1,17 @@
 import { Scene } from "phaser";
 
-export class Splash extends Scene {
+const TEXT_CONFIG = {
+  fontFamily: "Arial Black",
+  fontSize: 38,
+  color: "#ffffff",
+  stroke: "#000000",
+  strokeThickness: 8,
+  align: "center",
+};
+
+export class GameOver extends Scene {
   constructor() {
-    super("Splash");
+    super("GameOver");
   }
 
   create() {
@@ -10,14 +19,12 @@ export class Splash extends Scene {
     const height = Number(this.game.config.height);
 
     this.add
-      .text(width / 2, height - 100, "Click Here to Start", {
-        fontFamily: "Arial Black",
-        fontSize: 38,
-        color: "#ffffff",
-        stroke: "#000000",
-        strokeThickness: 8,
-        align: "center",
-      })
+      .text(width / 2, height / 2, "Game Over!", TEXT_CONFIG)
+      .setOrigin(0.5)
+      .setDepth(100);
+
+    this.add
+      .text(width / 2, height - 100, "Restart", TEXT_CONFIG)
       .setOrigin(0.5)
       .setDepth(100)
       .setInteractive({

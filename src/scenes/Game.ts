@@ -13,9 +13,8 @@ export class Game extends Scene {
   }
 
   create() {
-    // this.add.image(512, 384, "background");
-    // this.add.image(512, 350, "logo").setDepth(100);
     this.hideCursor();
+    this.events.on(Phaser.Scenes.Events.SHUTDOWN, () => this.showCursor());
 
     this.player = new Player(this, 100, 100);
     this.playerShots = this.add.group({
@@ -67,5 +66,8 @@ export class Game extends Scene {
     const hostedUrl = `url(assets/blank.cur)`;
     const fallback = `none`;
     this.input.setDefaultCursor(`${embeddedUrl}, ${hostedUrl}, ${fallback}`);
+  }
+  showCursor() {
+    this.input.setDefaultCursor("auto");
   }
 }

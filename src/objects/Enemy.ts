@@ -51,6 +51,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.hp--;
     shot.destroy();
 
-    if (this.hp <= 0) this.destroy();
+    if (this.hp <= 0) this.scene.scene.start("Win");
   }
 }

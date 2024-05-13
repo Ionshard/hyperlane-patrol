@@ -53,6 +53,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.hp--;
     shot.destroy();
 
-    if (this.hp <= 0) this.destroy();
+    if (this.hp <= 0) this.scene.scene.start("GameOver");
   }
 }
