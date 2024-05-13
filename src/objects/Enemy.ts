@@ -4,6 +4,7 @@ import { ShotEmitter, RingShotEmitter } from "./ShotEmitter";
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
   shotEmitter: ShotEmitter;
+  private hp: number;
   declare body: Phaser.Physics.Arcade.Body;
   declare scene: Game;
   constructor(scene: Game, x: number, y: number) {
@@ -22,6 +23,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       radius: 50,
     });
     this.shotEmitter.start();
+    this.hp = 100;
 
     const otherEmitter = this.scene.add.shotEmitter({
       type: "ring",
@@ -46,9 +48,9 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   }
 
   onShotCollide(shot: Shot) {
-    console.log("Gottem!");
+    this.hp--;
     shot.destroy();
-    // this.shotEmitter.stop();
-    // this.destroy();
+
+    if (this.hp <= 0) this.destroy();
   }
 }

@@ -6,12 +6,14 @@ const hitBoxRadius = 3;
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
   private lastShot: number;
+  private hp: number;
 
   declare body: Phaser.Physics.Arcade.Body;
   declare scene: Game;
 
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, "player");
+    this.hp = 3;
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     this.lastShot = this.scene.time.now;
@@ -48,7 +50,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   onShotCollide(shot: Shot) {
-    console.log("Ouch!");
+    this.hp--;
     shot.destroy();
+
+    if (this.hp <= 0) this.destroy();
   }
 }
