@@ -1,6 +1,6 @@
 import { Vector } from "matter";
 import { Game } from "../scenes/Game";
-import { Shot } from "./Shot";
+import { Shot, ShotConfig } from "./Shot";
 
 export interface ShotEmitter extends Phaser.GameObjects.Group {
   start(): void;
@@ -10,6 +10,7 @@ export type ShotEmitterConfig = RingShotEmitterConfig;
 
 export type BaseShotEmitterConfig = {
   host: Phaser.GameObjects.GameObject & Phaser.GameObjects.Components.Transform;
+  shot: ShotConfig["name"];
 };
 
 export type RingShotEmitterConfig = BaseShotEmitterConfig & {
@@ -62,7 +63,7 @@ export class RingShotEmitter
 
       this.scene.enemyShots.add(
         new Shot(this.scene, position.x, position.y, {
-          name: "shot",
+          name: this.config.shot,
           velocityX: velocity.x,
           velocityY: velocity.y,
         })

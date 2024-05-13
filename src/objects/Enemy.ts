@@ -12,6 +12,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.shotEmitter = new RingShotEmitter(this.scene, {
       type: "ring",
       host: this,
+      shot: "blueShot",
       initialAngle: 0,
       bulletSpeed: 150,
       spawnRate: 500,
@@ -24,10 +25,11 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     const otherEmitter = this.scene.add.shotEmitter({
       type: "ring",
       host: this,
+      shot: "pinkShot",
       initialAngle: Math.PI,
       bulletSpeed: 150,
       spawnRate: 500,
-      numberOfShots: 22,
+      numberOfShots: 11,
       spinRate: -25,
       radius: 50,
     });

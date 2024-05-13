@@ -1,7 +1,7 @@
 import { Game } from "../scenes/Game";
 
 export type ShotConfig = {
-  name: string;
+  name: "blueShot" | "pinkShot";
   velocityY: number;
   velocityX: number;
 };
