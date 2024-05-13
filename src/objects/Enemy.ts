@@ -15,8 +15,9 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       initialAngle: 0,
       bulletSpeed: 150,
       spawnRate: 500,
-      numberOfShots: 11,
+      numberOfShots: 22,
       spinRate: 25,
+      radius: 50,
     });
     this.shotEmitter.start();
 
@@ -26,8 +27,9 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       initialAngle: Math.PI,
       bulletSpeed: 150,
       spawnRate: 500,
-      numberOfShots: 11,
-      spinRate: -50,
+      numberOfShots: 22,
+      spinRate: -25,
+      radius: 50,
     });
     this.scene.time.delayedCall(250, () => otherEmitter.start());
     // this.scene.tweens.add({

@@ -1,3 +1,4 @@
+import { Vector } from "matter";
 import { Game } from "../scenes/Game";
 import { Shot } from "./Shot";
 
@@ -18,6 +19,7 @@ export type RingShotEmitterConfig = BaseShotEmitterConfig & {
   numberOfShots: number;
   spinRate: number;
   initialAngle: number;
+  radius: number;
 };
 export class RingShotEmitter
   extends Phaser.GameObjects.Group
@@ -45,21 +47,28 @@ export class RingShotEmitter
   }
 
   emitShots() {
-    let velocity = this.prime.clone();
     const angleOffset = Phaser.Math.PI2 / this.config.numberOfShots;
     for (let i = 0; i < this.config.numberOfShots; i++) {
-      velocity = velocity.normalize().scale(this.config.bulletSpeed);
+      const angle = this.prime
+        .clone()
+        .rotate(angleOffset * i)
+        .normalize();
+
+      const velocity = angle.clone().scale(this.config.bulletSpeed);
+      const position = angle
+        .clone()
+        .scale(this.config.radius)
+        .add(new Phaser.Math.Vector2(this.config.host.x, this.config.host.y));
+
       this.scene.enemyShots.add(
-        new Shot(this.scene, this.config.host.x, this.config.host.y, {
+        new Shot(this.scene, position.x, position.y, {
           name: "shot",
           velocityX: velocity.x,
           velocityY: velocity.y,
         })
       );
-
-      velocity = velocity.rotate(angleOffset);
     }
-    this.prime = this.prime.rotate(this.config.spinRate);
+    this.prime.rotate(this.config.spinRate);
   }
 }
 
