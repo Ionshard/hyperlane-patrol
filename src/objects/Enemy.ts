@@ -27,10 +27,9 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       bulletSpeed: 150,
       spawnRate: 500,
       numberOfShots: 11,
-      spinRate: -25,
+      spinRate: -50,
     });
-    otherEmitter.start();
-
+    this.scene.time.delayedCall(250, () => otherEmitter.start());
     // this.scene.tweens.add({
     //   targets: this,
     //   x: { from: 100, to: 300 },

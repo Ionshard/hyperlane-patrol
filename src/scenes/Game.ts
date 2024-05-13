@@ -41,6 +41,14 @@ export class Game extends Scene {
     });
 
     this.enemies.add(new Enemy(this, 225, 400));
+
+    // this.time.addEvent({
+    //   delay: 1000,
+    //   loop: true,
+    //   callback: () => {
+    //     console.log("Bullets: ", this.enemyShots.getLength());
+    //   },
+    // });
   }
 
   /**
