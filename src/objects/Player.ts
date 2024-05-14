@@ -28,7 +28,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   protected preUpdate(time: number, delta: number): void {
     super.preUpdate(time, delta);
     this.x = this.scene.input.activePointer.x;
-    this.y = this.scene.input.activePointer.y;
+    this.y = this.scene.input.activePointer.y - 50;
 
     if (
       this.scene.input.activePointer.isDown &&
