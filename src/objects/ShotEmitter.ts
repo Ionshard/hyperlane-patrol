@@ -92,25 +92,12 @@ export class RingShotEmitter
   }
 }
 
-function shotEmitterFactory(
+export function shotEmitterFactory(
   this: Phaser.GameObjects.GameObjectFactory,
   config: ShotEmitterConfig
 ): ShotEmitter {
   switch (config.type) {
     case "ring":
       return new RingShotEmitter(this.scene as Game, config);
-  }
-}
-
-Phaser.GameObjects.GameObjectFactory.register(
-  "shotEmitter",
-  shotEmitterFactory
-);
-
-declare global {
-  namespace Phaser.GameObjects {
-    interface GameObjectFactory {
-      shotEmitter: typeof shotEmitterFactory;
-    }
   }
 }

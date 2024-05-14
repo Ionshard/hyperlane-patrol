@@ -2,6 +2,7 @@ import { Scene } from "phaser";
 import { Player } from "../objects/Player";
 import { Enemy } from "../objects/Enemy";
 import { Shot } from "../objects/Shot";
+import { shotEmitterFactory } from "../objects/ShotEmitter";
 
 export class Game extends Scene {
   player: Player;
@@ -48,7 +49,7 @@ export class Game extends Scene {
       runChildUpdate: true,
     });
 
-    const enemy = new Enemy(this, 225, 400);
+    const enemy = new Enemy(this, 0, -100);
 
     this.enemies.add(enemy);
 
@@ -90,5 +91,18 @@ export class Game extends Scene {
   }
   showCursor() {
     this.input.setDefaultCursor("auto");
+  }
+}
+
+Phaser.GameObjects.GameObjectFactory.register(
+  "shotEmitter",
+  shotEmitterFactory
+);
+
+declare global {
+  namespace Phaser.GameObjects {
+    interface GameObjectFactory {
+      shotEmitter: typeof shotEmitterFactory;
+    }
   }
 }
