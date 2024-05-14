@@ -22,6 +22,7 @@ export type RingShotEmitterConfig = BaseShotEmitterConfig & {
   spinRate: number;
   initialAngle: number;
   radius: number;
+  startDelay: number | null;
 };
 export class RingShotEmitter
   extends Phaser.GameObjects.Group
@@ -52,6 +53,14 @@ export class RingShotEmitter
       this.destroy()
     );
     this.on(Phaser.GameObjects.Events.DESTROY, () => this.timerEvent.destroy());
+
+    if (this.config.startDelay !== null) {
+      if (this.config.startDelay === 0) {
+        this.start();
+      } else {
+        this.scene.time.delayedCall(this.config.startDelay, () => this.start());
+      }
+    }
   }
 
   start(): void {

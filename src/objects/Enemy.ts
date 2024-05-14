@@ -45,6 +45,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         numberOfShots: 22,
         spinRate: 25,
         radius: 50,
+        startDelay: 0,
       });
       const pinkEmitter = this.scene.add.shotEmitter({
         type: "ring",
@@ -56,9 +57,8 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         numberOfShots: 11,
         spinRate: -25,
         radius: 50,
+        startDelay: 250,
       });
-      blueEmitter.start();
-      this.scene.time.delayedCall(250, () => pinkEmitter.start());
 
       this.scene.tweens.chain({
         tweens: [
