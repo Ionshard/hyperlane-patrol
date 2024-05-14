@@ -2,6 +2,8 @@ import { Game } from "../scenes/Game";
 import { Shot } from "./Shot";
 import { ShotEmitter } from "./ShotEmitter";
 
+const MAX_HP = 100;
+
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
   shotEmitter: ShotEmitter;
   private hp: number;
@@ -12,7 +14,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     this.anims.play({ key: "sphereProbe", repeat: -1 });
-    this.hp = 100;
+    this.hp = MAX_HP;
 
     const width = Number(this.scene.game.config.width);
     const height = Number(this.scene.game.config.height);
@@ -80,6 +82,11 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   onShotCollide(shot: Shot) {
     this.hp--;
     shot.destroy();
+    this.tint = Phaser.Display.Color.GetColor(
+      255,
+      255 * (this.hp / MAX_HP),
+      255 * (this.hp / MAX_HP)
+    );
 
     if (this.hp <= 0) this.scene.scene.start("Win");
   }
