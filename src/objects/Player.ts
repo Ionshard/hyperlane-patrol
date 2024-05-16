@@ -4,6 +4,7 @@ import { Shot } from "./Shot";
 const GOD_MODE = true;
 const shotDelay = 100;
 const hitBoxRadius = 3;
+const touchScreenOffset = "ontouchstart" in window ? 50 : 0;
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
   private lastShot: number;
@@ -29,7 +30,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   protected preUpdate(time: number, delta: number): void {
     super.preUpdate(time, delta);
     this.x = this.scene.input.activePointer.x;
-    this.y = this.scene.input.activePointer.y - 50;
+    this.y = this.scene.input.activePointer.y - touchScreenOffset;
 
     if (
       this.scene.input.activePointer.isDown &&
