@@ -3,12 +3,14 @@ import { Player } from "../objects/Player";
 import { Enemy } from "../objects/Enemy";
 import { Shot } from "../objects/Shot";
 import { shotEmitterFactory } from "../objects/ShotEmitter";
+import { Script } from "../objects/Script";
 
 export class Game extends Scene {
   player: Player;
   playerShots: Phaser.GameObjects.Group;
   enemyShots: Phaser.GameObjects.Group;
   enemies: Phaser.GameObjects.Group;
+  script: Script;
   constructor() {
     super("Game");
   }
@@ -49,10 +51,6 @@ export class Game extends Scene {
       runChildUpdate: true,
     });
 
-    const enemy = new Enemy(this, 0, -100);
-
-    this.enemies.add(enemy);
-
     this.physics.add.overlap(this.player, this.enemyShots, ((
       player: Player,
       shot: Shot
@@ -68,6 +66,8 @@ export class Game extends Scene {
       enemy.onShotCollide(
         shot
       )) as Phaser.Types.Physics.Arcade.ArcadePhysicsCallback);
+
+    this.script = new Script(this);
 
     // this.time.addEvent({
     //   delay: 1000,

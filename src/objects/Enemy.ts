@@ -15,68 +15,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.scene.physics.add.existing(this);
     this.anims.play({ key: "sphereProbe", repeat: -1 });
     this.hp = MAX_HP;
-
-    const width = Number(this.scene.game.config.width);
-    const height = Number(this.scene.game.config.height);
-
-    this.scene.tweens.addMultiple([
-      {
-        targets: this,
-        x: width / 2,
-        ease: "Quad.easeIn",
-        duration: 1000,
-      },
-      {
-        targets: this,
-        y: { from: -10, to: height * 0.25 },
-        duration: 1000,
-        onComplete: () => this.emit("STAGE1"),
-      },
-    ]);
-
-    this.on("STAGE1", () => {
-      const blueEmitter = this.scene.add.shotEmitter({
-        type: "ring",
-        host: this,
-        shot: "blueShot",
-        initialAngle: 0,
-        bulletSpeed: 150,
-        spawnRate: 500,
-        numberOfShots: 22,
-        spinRate: 25,
-        radius: 50,
-        startDelay: 0,
-      });
-      const pinkEmitter = this.scene.add.shotEmitter({
-        type: "ring",
-        host: this,
-        shot: "pinkShot",
-        initialAngle: Math.PI,
-        bulletSpeed: 150,
-        spawnRate: 500,
-        numberOfShots: 11,
-        spinRate: -25,
-        radius: 50,
-        startDelay: 250,
-      });
-
-      this.scene.tweens.chain({
-        tweens: [
-          {
-            targets: this,
-            x: 300,
-            duration: 1500,
-          },
-          {
-            targets: this,
-            x: { from: 300, to: 100 },
-            duration: 3000,
-            yoyo: true,
-            repeat: -1,
-          },
-        ],
-      });
-    });
   }
 
   onShotCollide(shot: Shot) {
