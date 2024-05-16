@@ -15,6 +15,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     this.scene.physics.add.existing(this);
     this.anims.play({ key: "sphereProbe", repeat: -1 });
     this.hp = MAX_HP;
+    this.on("DEATH", () => this.death());
   }
 
   onShotCollide(shot: Shot) {
@@ -26,6 +27,14 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       255 * (this.hp / MAX_HP)
     );
 
-    this.emit("HIT", this);
+    if (this.hp <= 0) {
+      this.emit("DEATH");
+    } else {
+      this.emit("HIT");
+    }
+  }
+
+  death() {
+    this.destroy();
   }
 }

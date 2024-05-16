@@ -1,6 +1,7 @@
 import { Game } from "../scenes/Game";
 import { Shot } from "./Shot";
 
+const GOD_MODE = true;
 const shotDelay = 100;
 const hitBoxRadius = 3;
 
@@ -50,7 +51,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   onShotCollide(shot: Shot) {
-    this.hp--;
+    if (!GOD_MODE) this.hp--;
     shot.destroy();
 
     if (this.hp <= 0) this.scene.scene.start("GameOver");
