@@ -103,7 +103,13 @@ export class Script extends Phaser.Events.EventEmitter {
         },
       ],
     });
+
+    this.sphereProbe.on("HIT", () => {
+      if (this.sphereProbe.hp === 50) this.nextStep();
+    });
   }
 
-  end() {}
+  end() {
+    this.scene.scene.start("Win");
+  }
 }

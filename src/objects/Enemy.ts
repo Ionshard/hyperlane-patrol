@@ -6,7 +6,7 @@ const MAX_HP = 100;
 
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
   shotEmitter: ShotEmitter;
-  private hp: number;
+  hp: number;
   declare body: Phaser.Physics.Arcade.Body;
   declare scene: Game;
   constructor(scene: Game, x: number, y: number) {
@@ -26,6 +26,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
       255 * (this.hp / MAX_HP)
     );
 
-    if (this.hp <= 0) this.scene.scene.start("Win");
+    this.emit("HIT", this);
   }
 }
