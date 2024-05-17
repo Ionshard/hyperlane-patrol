@@ -17,6 +17,9 @@ export class Bootloader extends Scene {
     this.load.image("blueShot", "blueShot.png");
     this.load.image("pinkShot", "pinkShot.png");
     this.load.image("enemy", "enemy.png");
-    this.load.on("complete", () => this.scene.start("Splash"));
+    this.load.on("complete", () => {
+      this.scene.run("Background");
+      this.scene.start("Splash");
+    });
   }
 }

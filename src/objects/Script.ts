@@ -119,7 +119,7 @@ export class Script extends Phaser.Events.EventEmitter {
         blueEmitter.destroy();
         pinkEmitter.destroy();
         chain.stop();
-        this.scene.enemyShots.clear(true, true);
+        // this.scene.enemyShots.clear(true, true);
         this.scene.tweens.add({
           targets: this.sphereProbe,
           x: this.width / 2,
