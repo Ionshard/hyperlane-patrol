@@ -3,6 +3,8 @@ import { Scene } from "phaser";
 const COLOR_CLASSES = ["blue", "yellow", "white", "red"] as const;
 type ColorClass = (typeof COLOR_CLASSES)[number];
 
+const POINTS = [4, 6, 7] as const; // 5 star points are cliche
+
 export class Background extends Scene {
   width: number;
   height: number;
@@ -59,17 +61,21 @@ export class Background extends Scene {
       COLOR_CLASSES[Phaser.Math.Between(0, COLOR_CLASSES.length)];
 
     const color = this.generateColor(colorClass);
+    const points = POINTS[Phaser.Math.Between(0, POINTS.length)];
+    // @ts-expect-error testing
+    if (points === 5) console.log("Cliche Star Alert!");
 
     const star = new Phaser.GameObjects.Star(
       this,
       Phaser.Math.Between(0, this.width), //x
       Phaser.Math.Between(-55 + initialY, -5 + initialY), //y
-      [2, 4, 6, 7][Phaser.Math.Between(0, 3)], // Points (5 point stars are cliche)
+      points, // # of Points
       Phaser.Math.Between(1, 2), // Inner Radius
       Phaser.Math.Between(4, 8), // Outer Radius
       color, // Fill
       Phaser.Math.FloatBetween(0.6, 1) // Alpha
     );
+    star.rotation = Phaser.Math.Between(0, 90);
     this.stars.add(star);
     const tweens = this.tweens.addMultiple([
       {
