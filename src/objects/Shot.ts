@@ -3,12 +3,15 @@ import { Game } from "../scenes/Game";
 const SHOT_DATA = {
   playerShot: {
     animated: true,
+    shimmer: false,
   },
   blueShot: {
     animated: false,
+    shimmer: true,
   },
   pinkShot: {
     animated: false,
+    shimmer: true,
   },
 } as const;
 
@@ -29,6 +32,16 @@ export class Shot extends Phaser.Physics.Arcade.Sprite {
     this.setVelocity(this.config.velocityX, this.config.velocityY);
     if (SHOT_DATA[config.name].animated) {
       this.play({ key: config.name, repeat: -1 });
+    }
+    if (SHOT_DATA[config.name].shimmer) {
+      const tween = this.scene.tweens.add({
+        targets: this,
+        scale: { from: 0.8, to: 1.2 },
+        duration: 200,
+        repeat: -1,
+        yoyo: true,
+      });
+      this.on(Phaser.GameObjects.Events.DESTROY, () => tween.stop());
     }
   }
 
