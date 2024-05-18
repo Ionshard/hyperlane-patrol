@@ -1,7 +1,7 @@
 import { Game } from "../scenes/Game";
 import { Shot } from "./Shot";
 
-const GOD_MODE = true;
+const GOD_MODE = false;
 const MAX_HP = 3;
 const shotDelay = 100;
 const hitBoxRadius = 3;
@@ -9,11 +9,13 @@ const touchScreenOffset = "ontouchstart" in window ? 50 : 0;
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
   controllable = true;
+  redshift = 0;
   private lastShot: number;
   private hp: number;
 
   declare body: Phaser.Physics.Arcade.Body;
   declare scene: Game;
+  damage: Phaser.Tweens.Tween;
 
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, "player");
@@ -31,6 +33,12 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
   protected preUpdate(time: number, delta: number): void {
     super.preUpdate(time, delta);
+
+    this.tint = Phaser.Display.Color.GetColor(
+      255,
+      255 - this.redshift,
+      255 - this.redshift
+    );
 
     if (!this.controllable) return;
 
@@ -61,6 +69,19 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     if (!this.controllable) return;
     if (!GOD_MODE) this.hp--;
     shot.destroy();
+
+    this.damage?.stop();
+    this.damage = this.scene.tweens.add({
+      targets: this,
+      redshift: { from: 0, to: 255 * (1 - this.hp / MAX_HP) },
+      duration: 100 * (this.hp / MAX_HP),
+      repeatDelay: 400 * (this.hp / MAX_HP),
+      ease: "Sine",
+      yoyo: true,
+      repeat: -1,
+    });
+
+    this.scene.cameras.main.shake(100, 0.01);
 
     if (this.hp <= 0) this.scene.scene.start("GameOver");
   }
