@@ -15,7 +15,13 @@ export class Splash extends Scene {
     );
 
     this.add
-      .bitmapText(width / 2, height / 2, "OceanicDrift", "Game Name", 72)
+      .bitmapText(
+        width / 2,
+        height / 2,
+        "OceanicDrift",
+        "Hyperlane\n      Patrol",
+        80
+      )
       .setOrigin(0.5);
 
     this.add
