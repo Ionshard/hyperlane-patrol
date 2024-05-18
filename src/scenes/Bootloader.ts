@@ -23,6 +23,7 @@ export class Bootloader extends Scene {
     this.load.audio("gameLoop", "gameLoop.mp3");
     this.load.audio("gameOver", "gameOver.ogg");
     this.load.audio("longExplosion", "longExplosion.wav");
+    this.load.audio("playerHit", "playerHit.wav");
     this.load.audio("menu", "menu.mp3");
     this.load.audio("select", "select.wav");
     this.load.audio("shot", "shot.wav");

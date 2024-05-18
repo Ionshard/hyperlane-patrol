@@ -143,6 +143,9 @@ export class Script extends Phaser.Events.EventEmitter {
   stage2() {
     this.scene.sound.play("alarm", { loop: true, volume: 1.5 });
     this.sphereProbe.on("DEATH", () => this.scene.sound.stopByKey("alarm"));
+    this.scene.events.on(Phaser.Scenes.Events.SHUTDOWN, () =>
+      this.scene.sound.stopByKey("alarm")
+    );
     const path = new Phaser.Curves.Path();
     path.add(
       new Phaser.Curves.Ellipse(

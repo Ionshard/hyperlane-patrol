@@ -29,6 +29,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       this.width / 2.0 - hitBoxRadius * 1.5,
       this.height / 2.0 - hitBoxRadius * 1.5
     );
+    this.scene.sound.add("playerHit");
   }
 
   protected preUpdate(time: number, delta: number): void {
@@ -81,6 +82,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       repeat: -1,
     });
 
+    this.scene.sound.play("playerHit");
     this.scene.cameras.main.shake(100, 0.01);
 
     if (this.hp <= 0) this.scene.scene.start("GameOver");
