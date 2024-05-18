@@ -5,7 +5,6 @@ const STEPS = ["START", "STAGE1", "STAGE2", "END"] as const;
 type Step = (typeof STEPS)[number];
 
 const TRANSITIONS: Record<Step, Step | null> = {
-  // START: "STAGE2",
   START: "STAGE1",
   STAGE1: "STAGE2",
   STAGE2: "END",
@@ -23,6 +22,12 @@ export class Script extends Phaser.Events.EventEmitter {
     this.scene = scene;
     this.width = Number(this.scene.game.config.width);
     this.height = Number(this.scene.game.config.height);
+    this.scene.sound.add("alarm");
+    this.scene.sound.add("longExplosion");
+    this.scene.sound.add("gameLoop");
+    this.scene.events.on(Phaser.Scenes.Events.SHUTDOWN, () =>
+      this.scene.sound.stopByKey("gameLoop")
+    );
 
     this.init();
   }
@@ -54,6 +59,9 @@ export class Script extends Phaser.Events.EventEmitter {
     this.sphereProbe = new Enemy(this.scene, 0, -100);
     this.scene.enemies.add(this.sphereProbe);
 
+    this.scene.time.delayedCall(1000, () =>
+      this.scene.sound.play("gameLoop", { volume: 0.75 })
+    );
     this.scene.tweens.addMultiple([
       {
         targets: this.sphereProbe,
@@ -133,6 +141,8 @@ export class Script extends Phaser.Events.EventEmitter {
   }
 
   stage2() {
+    this.scene.sound.play("alarm", { loop: true, volume: 1.5 });
+    this.sphereProbe.on("DEATH", () => this.scene.sound.stopByKey("alarm"));
     const path = new Phaser.Curves.Path();
     path.add(
       new Phaser.Curves.Ellipse(
@@ -184,12 +194,53 @@ export class Script extends Phaser.Events.EventEmitter {
     });
 
     this.sphereProbe.on("DEATH", () => {
+      this.scene.player.controllable = false;
+      this.scene.showCursor();
       tween.destroy();
-      this.nextStep();
+      this.scene.enemyShots.clear(true, true);
+      this.scene.tweens.add({
+        targets: this.scene.player,
+        x: this.width / 2,
+        duration: 2000,
+      });
+      this.explosions();
     });
   }
 
   end() {
-    this.scene.scene.start("Win");
+    this.scene.tweens.add({
+      targets: this.scene.player,
+      y: -50,
+      duration: 1500,
+      onComplete: () => this.scene.scene.start("Win"),
+    });
+  }
+
+  private explosions() {
+    this.scene.sound.play("longExplosion");
+    const x = this.sphereProbe.x;
+    const y = this.sphereProbe.y;
+    this.spawnExplosion(x, y);
+    this.scene.time.delayedCall(200, () => this.spawnExplosion(x - 20, y - 15));
+    this.scene.time.delayedCall(400, () => this.spawnExplosion(x + 50, y - 30));
+    this.scene.time.delayedCall(800, () => {
+      this.spawnExplosion(x - 100, y + 15);
+      this.scene.time.delayedCall(750, () => this.nextStep());
+    });
+  }
+  private spawnExplosion(x: number, y: number) {
+    const explosion = this.scene.add.sprite(
+      x,
+      y,
+      "sprites",
+      "sprite_explosion_medium_0.png"
+    );
+    explosion.anims
+      .play("explosion")
+      .on(Phaser.Animations.Events.ANIMATION_COMPLETE, () => {
+        explosion.destroy();
+      });
+    explosion.scale = Phaser.Math.FloatBetween(0.9, 1.1);
+    explosion.angle = Phaser.Math.Between(0, 90);
   }
 }

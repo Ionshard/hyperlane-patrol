@@ -8,6 +8,11 @@ export class Splash extends Scene {
   create() {
     const width = Number(this.game.config.width);
     const height = Number(this.game.config.height);
+    this.sound.add("select");
+    this.sound.add("menu").play({ volume: 0.3 });
+    this.events.on(Phaser.Scenes.Events.SHUTDOWN, () =>
+      this.sound.stopByKey("menu")
+    );
 
     this.add
       .text(width / 2, height - 100, "Click Here to Start", {
@@ -24,6 +29,7 @@ export class Splash extends Scene {
         useHandCursor: true,
       })
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+        this.sound.play("select");
         this.scene.start("Game");
       });
   }

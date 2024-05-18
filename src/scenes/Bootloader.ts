@@ -17,6 +17,18 @@ export class Bootloader extends Scene {
     this.load.image("blueShot", "blueShot.png");
     this.load.image("pinkShot", "pinkShot.png");
     this.load.image("enemy", "enemy.png");
+
+    this.load.audio("alarm", "alarm.wav");
+    this.load.audio("damage", "damage.wav");
+    this.load.audio("gameLoop", "gameLoop.mp3");
+    this.load.audio("gameOver", "gameOver.ogg");
+    this.load.audio("longExplosion", "longExplosion.wav");
+    this.load.audio("menu", "menu.mp3");
+    this.load.audio("select", "select.wav");
+    this.load.audio("shot", "shot.wav");
+    this.load.audio("start", "start.wav");
+    this.load.audio("victory", "victory.ogg");
+
     this.load.on("complete", () => {
       this.scene.run("Background");
       this.scene.start("Splash");

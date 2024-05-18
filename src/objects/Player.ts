@@ -2,11 +2,13 @@ import { Game } from "../scenes/Game";
 import { Shot } from "./Shot";
 
 const GOD_MODE = true;
+const MAX_HP = 3;
 const shotDelay = 100;
 const hitBoxRadius = 3;
 const touchScreenOffset = "ontouchstart" in window ? 50 : 0;
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
+  controllable = true;
   private lastShot: number;
   private hp: number;
 
@@ -15,7 +17,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
   constructor(scene: Game, x: number, y: number) {
     super(scene, x, y, "player");
-    this.hp = 3;
+    this.hp = MAX_HP;
     this.scene.add.existing(this);
     this.scene.physics.add.existing(this);
     this.lastShot = this.scene.time.now;
@@ -29,6 +31,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
   protected preUpdate(time: number, delta: number): void {
     super.preUpdate(time, delta);
+
+    if (!this.controllable) return;
+
     this.x = this.scene.input.activePointer.x;
     this.y = this.scene.input.activePointer.y - touchScreenOffset;
 
@@ -42,6 +47,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   shoot() {
+    this.scene.sound.play("shot");
     this.scene.playerShots.add(
       new Shot(this.scene, this.x, this.y - 25, {
         name: "playerShot",
@@ -52,6 +58,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   onShotCollide(shot: Shot) {
+    if (!this.controllable) return;
     if (!GOD_MODE) this.hp--;
     shot.destroy();
 

@@ -124,7 +124,7 @@
             <key>json</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename></filename>
+                <filename>../public/assets/sprites.json</filename>
             </struct>
         </map>
         <key>multiPackMode</key>
@@ -172,9 +172,80 @@
             <false/>
         </struct>
         <key>individualSpriteSettings</key>
-        <map type="IndividualSpriteSettingsMap"/>
+        <map type="IndividualSpriteSettingsMap">
+            <key type="filename">mediumExplosion/sprite_explosion_medium_0.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_1.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_10.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_11.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_12.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_13.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_14.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_15.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_16.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_17.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_2.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_3.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_4.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_5.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_6.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_7.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_8.png</key>
+            <key type="filename">mediumExplosion/sprite_explosion_medium_9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>20,25,40,50</rect>
+                <key>scale9Paddings</key>
+                <rect>20,25,40,50</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_0.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_1.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_10.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_11.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_12.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_13.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_14.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_2.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_3.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_4.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_5.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_6.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_7.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_8.png</key>
+            <key type="filename">sphereProbe/sprite_enemy_sphereprobe_9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>11,12,23,24</rect>
+                <key>scale9Paddings</key>
+                <rect>11,12,23,24</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+        </map>
         <key>fileLists</key>
-        <map type="SpriteSheetMap"/>
+        <map type="SpriteSheetMap">
+            <key>default</key>
+            <struct type="SpriteSheet">
+                <key>files</key>
+                <array>
+                    <filename>sphereProbe</filename>
+                    <filename>mediumExplosion</filename>
+                </array>
+            </struct>
+        </map>
         <key>ignoreFileList</key>
         <array/>
         <key>replaceList</key>

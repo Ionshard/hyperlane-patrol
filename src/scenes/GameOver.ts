@@ -18,6 +18,12 @@ export class GameOver extends Scene {
     const width = Number(this.game.config.width);
     const height = Number(this.game.config.height);
 
+    this.sound.add("select");
+    this.sound.add("gameOver").play();
+    this.events.on(Phaser.Scenes.Events.SHUTDOWN, () =>
+      this.sound.stopByKey("gameOver")
+    );
+
     this.add
       .text(width / 2, height / 2, "Game Over!", TEXT_CONFIG)
       .setOrigin(0.5)
@@ -31,6 +37,7 @@ export class GameOver extends Scene {
         useHandCursor: true,
       })
       .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+        this.sound.play("select");
         this.scene.start("Game");
       });
   }

@@ -19,6 +19,10 @@ export class Game extends Scene {
     this.hideCursor();
     this.events.on(Phaser.Scenes.Events.SHUTDOWN, () => this.showCursor());
 
+    this.sound.add("shot");
+    this.sound.add("damage");
+    this.sound.add("start").play();
+
     this.anims.create({
       key: "playerShot",
       frames: this.anims.generateFrameNumbers("playerShot", {
@@ -40,6 +44,16 @@ export class Game extends Scene {
       frameRate: 10,
     });
 
+    this.anims.create({
+      key: "explosion",
+      frames: this.anims.generateFrameNames("sprites", {
+        start: 0,
+        end: 17,
+        prefix: "sprite_explosion_medium_",
+        suffix: ".png",
+      }),
+      frameRate: 10,
+    });
     this.player = new Player(this, 100, 100);
     this.playerShots = this.add.group({
       runChildUpdate: true,

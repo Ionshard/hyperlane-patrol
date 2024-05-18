@@ -21,6 +21,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
   onShotCollide(shot: Shot) {
     this.hp--;
     shot.destroy();
+    this.scene.sound.play("damage");
     this.tint = Phaser.Display.Color.GetColor(
       255,
       255 * (this.hp / MAX_HP),
