@@ -15,14 +15,17 @@ export class Splash extends Scene {
     );
 
     this.add
-      .text(width / 2, height - 100, "Click Here to Start", {
-        fontFamily: "Arial Black",
-        fontSize: 38,
-        color: "#ffffff",
-        stroke: "#000000",
-        strokeThickness: 8,
-        align: "center",
-      })
+      .bitmapText(width / 2, height / 2, "OceanicDrift", "Game Name", 72)
+      .setOrigin(0.5);
+
+    this.add
+      .bitmapText(
+        width / 2,
+        height - 100,
+        "OceanicDrift",
+        "Click Here to Start",
+        38
+      )
       .setOrigin(0.5)
       .setDepth(100)
       .setInteractive({

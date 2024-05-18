@@ -30,6 +30,12 @@ export class Bootloader extends Scene {
     this.load.audio("start", "start.wav");
     this.load.audio("victory", "victory.ogg");
 
+    this.load.bitmapFont(
+      "OceanicDrift",
+      "OceanicDrift.png",
+      "OceanicDrift.xml"
+    );
+
     this.load.on("complete", () => {
       this.scene.run("Background");
       this.scene.start("Splash");
